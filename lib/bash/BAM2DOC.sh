@@ -27,7 +27,7 @@ mychr=$(cat $Program_Folder/data/targets/$Assembly/$Target_Name/*_chromosome.txt
 
 for i in $mychr
 do
-		grep -w $i $Program_Folder/data/targets/$Assembly/$Target_Name/TargetWindow.bed > $Output_Folder/.tmp/.temp.bed
+		grep -w $i $Program_Folder/data/targets/$Assembly/$Target_Name/Filtered.bed > $Output_Folder/.tmp/.temp.bed
 		R --slave --args $Sample_Name,$Output_Folder,$Program_Folder,$i,$Target_Name,$Bam_File < $Program_Folder/lib/R/MakeDOC.R
 done
 
