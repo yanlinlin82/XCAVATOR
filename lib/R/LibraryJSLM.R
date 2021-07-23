@@ -215,8 +215,8 @@ DataStatistics <- function(LogDataNorm,DataFolder,ExpLabelOut)
   ColorData[which(breaks>MioQuantile[7])]<-colors[7]
   xlimL<-tail(which(breaks< -2.5),1)
   xlimU<-head(which(breaks> 2.5),1)
-  
-  
+  if (length(xlimL) == 0) xlimL <- 1
+  if (length(xlimU) == 0) xlimU <- length(breaks)
   
   
   FilePercentileOut<-file.path(DataFolder,"Results",ExpLabelOut,paste("Percentile_",ExpLabelOut,".txt",sep=""))
