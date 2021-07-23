@@ -1,0 +1,4 @@
+/home/alberto/MalteGenomes/BamFiles/R13-2.HS37.aln.bam /home/alberto/MalteGenomes/RCData/w1000/R13-2 R13-2
+/home/alberto/MalteGenomes/BamFiles/R13-1.HS37.aln.bam /home/alberto/MalteGenomes/RCData/w1000/R13-1 R13-1
+/home/alberto/MalteGenomes/BamFiles/R13-3.HS37.aln.bam /home/alberto/MalteGenomes/RCData/w1000/R13-3 R13-3
+

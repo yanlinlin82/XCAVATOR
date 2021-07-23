@@ -1,0 +1,7 @@
+/home/ngs1/BAMCucca/19397.bam /home/ngs1/ProvaRC500/19397 19397
+/home/ngs1/BAMCucca/22814.bam /home/ngs1/ProvaRC500/22814 22814
+/home/ngs1/BAMCucca/5580.bam /home/ngs1/ProvaRC500/5580 5580
+/home/ngs1/BAMCucca/csct_000544.bam /home/ngs1/ProvaRC500/csct_000544 csct_000544
+/home/ngs1/BAMCucca/csct_000642.bam /home/ngs1/ProvaRC500/csct_000642 csct_000642
+/home/ngs1/BAM1KG/NA06986.mapped.ILLUMINA.bwa.CEU.low_coverage.20101123.rmdup.bam /home/ngs1/ProvaRC500/NA06986 NA06986
+

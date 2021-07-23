@@ -1,0 +1,1 @@
+/home/ngs1/BAM1KG/NA06994.mapped.ILLUMINA.bwa.CEU.low_coverage.20120522.bam /home/ngs1/ProvaRC500/NA06994 NA06994

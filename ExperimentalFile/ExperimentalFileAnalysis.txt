@@ -1,0 +1,7 @@
+T1 /home/ngs1/ProvaRC500/19397 19397
+T2 /home/ngs1/ProvaRC500/22814 22814
+T3 /home/ngs1/ProvaRC500/5580 5580
+T4 /home/ngs1/ProvaRC500/csct_000544 csct_000544
+T5 /home/ngs1/ProvaRC500/csct_000642 csct_000642
+T6 /home/ngs1/ProvaRC500/NA06986 NA06986
+

@@ -1,0 +1,7 @@
+T1 /home/alberto/MalteGenomes/RCData/w1000rmdp/R13-1 R13-1-Mot
+C1 /home/alberto/MalteGenomes/RCData/w1000rmdp/R13-3 R13-3-Mot
+T2 /home/alberto/MalteGenomes/RCData/w1000rmdp/R13-1 R13-1-Fat
+C2 /home/alberto/MalteGenomes/RCData/w1000rmdp/R13-2 R13-2-Fat
+T3 /home/alberto/MalteGenomes/RCData/w1000rmdp/R13-2 R13-2-F-M
+C3 /home/alberto/MalteGenomes/RCData/w1000rmdp/R13-3 R13-2-M-F
+

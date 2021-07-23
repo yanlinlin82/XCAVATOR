@@ -1,0 +1,4 @@
+T1 /home/alberto/MalteGenomes/RCAnalysis/w1000 R13-1-Mot
+T2 /home/alberto/MalteGenomes/RCAnalysis/w1000 R13-1-Fat
+T3 /home/alberto/MalteGenomes/RCAnalysis/w1000 R13-2-F-M
+

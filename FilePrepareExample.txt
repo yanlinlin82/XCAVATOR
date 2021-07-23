@@ -1,0 +1,7 @@
+/../BamFileFolder/Exp1.bam /../OutpuFolder/RCData/Exp1 Exp1
+/../BamFileFolder/Exp2.bam /../OutpuFolder/RCData/Exp2 Exp2
+/../BamFileFolder/Exp3.bam /../OutpuFolder/RCData/Exp3 Exp3
+/../BamFileFolder/Exp4.bam /../OutpuFolder/RCData/Exp4 Exp4
+/../BamFileFolder/Exp5.bam /../OutpuFolder/RCData/Exp5 Exp5
+/../BamFileFolder/Exp6.bam /../OutpuFolder/RCData/Exp6 Exp6
+

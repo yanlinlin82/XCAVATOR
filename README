@@ -1,0 +1,84 @@
+### System Requirements ###
+XCAVATOR was conceived for running on UNIX OS 64-bit machines with R (version ≥ 2.14.0) and the Hmisc library, SAM-tools (version ≥ 0.1.17), and Perl (version ≥ 5.8.8) to be correctly installed on your system. 
+
+R can be downloaded at CRAN (http://cran.r-project.org), wihle SAMtools at SourceForge (http://samtools.sourceforge.net). Perl is native in almost any Unix machine. Before installing and runnig XCAVATOR be sure they are all installed on your system and their executable files have been exported in your PATH. If you experience any problem with any of them you should contact your system administrator. Installation of any of these softwares requires superuser privileges.
+
+To check for R, SAMtools and Perl you can type on your shell the following commands:
+> R
+Press CTRL+D to quit R. 
+> samtools 
+> perl -v
+
+
+
+#### XCAVATOR Installation ####
+Uncompress the XCAVATOR package, then move to .../XCAVATOR/lib/F77 folder and compile the fortran files F4R.f and FastJointSLMLibrary.f with R compiler:
+F77> R CMD SHLIB F4R.f 
+F77> R CMD SHLIB FastJointSLMLibrary.f
+
+This will create the .o and .so fortran libraries.
+
+#### XCAVATOR Commands ####
+The XCAVATOR workflow analysis is made of three steps that can be invoked by means of three Perl scripts:
+
+1. ReferenceWindowInitialize.pl
+2. XCAVATORDataPrepare.pl
+3. XCAVATORDataAnalysis.pl
+
+##### ReferenceWindowInitialize.pl #####
+
+ReferenceWindowInitialize.pl is the module that calculates "windows" informations for the XCAVATOR analyses. This module calculates GC-content and mappability values for consecutive and non overlapping windows of the genome of size "window". 
+
+ReferenceWindowInitialize.pl requires 4 arguments: the path to a source file (e.g. SourceTarget.txt), the path to a bed file, a "label" and the assembly name (allowed options are: hg19 and hg38). Example of cmd is:
+
+perl ReferenceWindowInitialize.pl SourceTarget.txt MyWindowLabelName myWindow hg19
+
+
+The default source file is SourceTarget.txt that is placed in the main program folder. SourceTarget.txt is a space delimitated file that contains the absolute paths to a bigWig file (.bw) for the calculations of mappability and to the reference genome sequence in .fasta format for GC-content calculations.
+The bigWig file is a binary file reporting information about mappability, referred to a reference assembly. Mappability files for hg19 and hg38 assemblies are provided with the XCAVATOR package and they are present in the /../XCAVATOR/data folder. They were created by using the GEM mapper aligner belonging to the GEM suite (http://gemlibrary.sourceforge.net/), allowing up to two mismatches and considering sliding windows of 100mer.
+
+myWindow represents the distance between start and end (in bp) of consecutive and non-overlapping windows of the genome that will be used by XCAVATOR to calculate read counts. myWindow must be an integer number (e.g. 100,200,500,1000).
+
+
+
+Setting the label name as "MyWindowLabelName", the ReferenceWindowInitialize.pl module will create a folder (if you are using the hg19 assembly) /.../XCAVATOR/data/targets/hg19/MyLabelName containing all files required for XCAVATOR analysis.
+
+
+
+####### XCAVATORDataPrepare.pl #####
+
+
+XCAVATORDataPrepare.pl is a Perl script that performs RC or DOC calculation and normalization on multiple .bam files. It takes as imput an experimental file and four command-line options to run properly:
+
+perl XCAVATORDataPrepare.pl FilePrepare.txt --processors 7 --target MyLabelName --mode DOC --assembly hg19
+
+
+
+The text file (e.g. FilePrepare.txt, that you have to create) contains details about all .bam files you want to analyse. The options concern the number of processors to use (–processors), the name of the target (MyLabelName, with window size and GC and mappability informations), the mode (RC for short reads and DOC for long reads, PacBio and Nanopore) and the human assembly you used for the mapping (–assembly). Available options for assembly are hg19 and hg38.
+
+
+Before running EXCAVATORDataPrepare.pl you need to create a space delimited file with three fields: the absolute path to the .bam file you want to analyse, the path to the main sample output folder and the sample name. The sample name will be used as a prefix/suffix for output files. Each row in the file contains details about one sample. For each sample, the main output folder specified in the second filed of the ExperimentalFilePre- pare.window.txt will be created.
+
+######## XCAVATORDataAnalysis.pl #####
+
+XCAVATORDataAnalysis.pl is a multi-threading Perl that performs the segmentation of the RC/DOC by means of the Shifting Level Model algorithm and exploits FastCall algorithm to classify each segmented region as one of the five possible discrete states (2-copy deletion, 1-copy deletion, normal, 1-copy duplication and N-copy amplification). 
+XCAVATORDataAnalysis.pl takes as input one file and four options. This is an example of the cmd:
+
+perl XCAVATORDataAnalysis.pl FileAnalysis.txt --processors 6 --target MyLabelName --assembly hg19 --output OutputFolder --mode nocontrol/pooling/paired
+
+
+MyLabelName and assembly must be the same used in XCAVATORDataPrepare.pl step. The input file is a space delimited text file that contains three fields, the second and the third are the same as in FilePrepare.txt, while the first is a label which specifies how to handle and compare the samples. Labels are Cx (for controls, with x=1,2,3…) and Ty (with y=1,2,3….). 
+XCAVATOR allows to analyze samples in three different ways: paired, nocontrol and pooling. In pooling, all test samples will be compared with the same global control obtained by combining all control samples (all the samples with Cx label will be collapsed to a pooled control sample). In paired, each test sample is compared with its control sample (T1-C1, T2-C2,….) and this analysis mode is best suited for the identification of somatic CNV of matched tumor/control samples. In "nocontrol" mode each test sample is analyzed without using a control and the FileAnalysis.txt file only needs Ty labels.
+An example of well formatted FileAnalysis.txt for pooling, paired and nocontrol mode is reported in the XCAVATOR main folder.
+
+All the results of the analyses are stored in the OutputFolder that contains two main subfolders: Plots and Results. The Plots folder contains .pdf files reporting the segmented genomic profiles and statistically significant genomic regions (chromosome by chromosome) for each test sample (follow /.../Plots/SampleName/).
+
+The Results/SampleName/ folder contains .txt and .vcf files with the results produced by SLM and FastCall. In particular, FastCall results are summarized in FastCallResults_SampleName.txt files. The fields of this file reports: chromosome, start position, end position, median log2-ratio in the segment copy number fraction, copy number value, copy number state and call probability. Concerning copy number state values: 2-copies deletion are encoded with "-2", while 1-copy deletions are reported as "-1" calls. 1-copy and multiple-copies duplication are reported as "1" and "2" respectively.
+
+Moreover, XCAVATOR also produces a .vcf file (ExcavatorRegionCall_SampleName.vcf) with details about identified CNVs. The VCF (Variant Call Format) is a text file of nine fields used to store sequence variations. Each row contains details about a CNV: the starting breakpoint is specified in POS field, the end and the length of the CNV are in the INFO field (END and SVLEN id). 
+
+###### Algorithms Parameters #######
+
+SML and FastCall parameters are stored in the ParameterFile.txt in the main folder of the tool. For LSM algorithm the user can set the value of Omega in the range 0.0 − 1.0, Theta (0.0 − 1.0) and D_norm. We suggest to use Omega (0.1 − 0.5), Theta (10^−7 −10^−3) and D_norm (10^4 −10^6). For FastCall algorithm the user may set the parameters: Cellularity (0.0−1.0) is the fraction of tumor cells (change this value only for somatic analyses), Threshold d (recommended 0.2−0.6) is the lower bound for the truncated gaussian of the neutral (2 copies) state, Threshold u (recommended 0.1 − 0.4) is the upper bound for the truncated gaussian of the neutral (2 copies) state. 
+
+

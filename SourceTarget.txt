@@ -1,0 +1,1 @@
+/home/alberto/XCAVATOR/data/ucsc.hg19.bw /home/Workspace/DB/hg19/ucsc.hg19.fasta

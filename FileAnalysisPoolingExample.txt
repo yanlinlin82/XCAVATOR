@@ -1,0 +1,7 @@
+T1 /../OutpuFolder/RCData/Exp1 Exp1
+T2 /../OutpuFolder/RCData/Exp2 Exp2
+T3 /../OutpuFolder/RCData/Exp3 Exp3
+T4 /../OutpuFolder/RCData/Exp4 Exp4
+C1 /../OutpuFolder/RCData/Exp5 Exp5
+C2 /../OutpuFolder/RCData/Exp6 Exp6
+

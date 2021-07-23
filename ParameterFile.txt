@@ -1,0 +1,15 @@
+## Omega parameter for the HSLM algorithm ##
+0.3
+## Theta parameter (baseline probability m_i changes its value) for the HSLM algorithm ##
+1e-5
+## D_norm parameter for the HSLM algorithm ##
+10e6
+## Cellularity parameter for the FastCall Calling algorithm ##
+1
+## Threshold d for the truncated gaussian distribution of the FastCall Calling algorithm ##
+0.3
+## Threshold u for the truncated gaussian distribution of the FastCall Calling algorithm ##
+0.25
+## Segment with a number of exons smaller than a threshold are filtered out ##
+1
+
