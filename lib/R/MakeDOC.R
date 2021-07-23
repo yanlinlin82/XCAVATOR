@@ -8,7 +8,7 @@ chr <- split.vars[4]
 target.name <- split.vars[5]
 FileBAMIn <- split.vars[6]
 
-DepthString<-"/home/Workspace/Tools/samtools/bin/samtools bedcov "
+DepthString<-"samtools bedcov "
 
 FileBEDIn<-file.path(Output_Folder,".tmp",".temp.bed")
 
