@@ -84,6 +84,9 @@ push(@pids,$childpid);
 #print "My Children: ", join(' ',@pids), "\n";
 waitpid($_,0) for @pids;
 
+unlink $Input_File_Parallel;
+rmdir $Temp_Folder;
+
 print "Multiprocessor Analysis Complete!\n";
 
 ######################################################################
