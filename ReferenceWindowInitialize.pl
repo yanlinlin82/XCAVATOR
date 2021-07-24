@@ -6,6 +6,7 @@ use Getopt::Long;
 use strict;
 use Cwd 'abs_path';
 use File::Path;
+use File::Basename;
 	
 ######################################################################
 #
@@ -44,12 +45,10 @@ $man and pod2usage (-verbose=>2, -exitval=>1, -output=>\*STDOUT);
 #
 ######################################################################
 
-my ($myscriptname,$myscript,$workingfolder,$L1,$L2);
+my ($myscriptname,$myscript,$workingfolder);
 
 $myscript = abs_path($0);
-$L1=length($myscript);
-$L2=length($0);
-$workingfolder=substr $myscript, 0, ($L1 - $L2 - 1);
+$workingfolder = dirname($myscript);
 
 $Program_Folder_Path="$workingfolder";
 

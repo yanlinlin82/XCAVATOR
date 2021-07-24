@@ -6,6 +6,7 @@ use Getopt::Long;
 use strict;
 use File::Path;
 use Cwd 'abs_path';
+use File::Basename;
 	
 ######################################################################
 #
@@ -46,12 +47,10 @@ $Input_File_Path=$ARGV[0];
 #
 ######################################################################
 
-my ($myscript,$workingfolder,$L1,$L2);
+my ($myscript,$workingfolder);
 
 $myscript = abs_path($0);
-$L1=length($myscript);
-$L2=length($0);
-$workingfolder=substr $myscript, 0, ($L1 - $L2 - 25);
+$workingfolder = dirname(dirname(dirname($myscript)));
 
 $Program_Folder_Path="$workingfolder";
 
