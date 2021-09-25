@@ -1,7 +1,7 @@
 ################ Correzione dei RC dal GC content secondo Yoon ####################
 CorrectGC<-function(RC,GCContent,step)
 {
-  
+  RC <- as.numeric(RC) # to avoid error 'NAs produced by integer overflow'
   
   stepseq<-seq(0,100,by=step)
   
@@ -39,7 +39,7 @@ CorrectGC<-function(RC,GCContent,step)
 ################ Correzione dei RC dalla Mappability ####################
 CorrectMAP<-function(RC,MAPContent,step)
 {
-  
+  RC <- as.numeric(RC) # to avoid error 'NAs produced by integer overflow'
   
   stepseq<-seq(0,100,by=step)
   
@@ -93,7 +93,7 @@ QuantileMAP<-function(RCTL,MAP,step)
     }
     if (length(ind)>0)
     {
-      QuantileVecMAP<-rbind(QuantileVecMAP,quantile(RCTL[ind],c(0.1,0.9)))
+      QuantileVecMAP<-rbind(QuantileVecMAP,quantile(RCTL[ind],c(0.1,0.9),na.rm=T))
       MedianVecMAP<-c(MedianVecMAP,median(RCTL[ind],na.rm=T))
     }
     if (length(ind)==0)
