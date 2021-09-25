@@ -50,7 +50,7 @@ EMFastCall<-function(mdata,thru,thrd)
   prior<-c(0.05,0.1,0.7,0.1,0.05)
   lvec<-c(-20,-1.3,-thrd,thru,0.9)
   uvec<-c(-1.3,-thrd,thru,0.9,20)
-  LikeliNew<-sum(PosteriorP(mdata,muvec,sdvec,prior)*prior)
+  LikeliNew<-sum(PosteriorP(mdata,muvec,sdvec,prior)*prior,na.rm=T)
   
   threshold<-1e-05
   for (i in 1:1000)
