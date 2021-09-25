@@ -364,9 +364,9 @@ VCFWindowCreate<-function(Assembly,DataFolder,ExpLabelOut,TargetFolder,SummaryDa
   {
     
     
-    outSig<-out[indSig,]
+    outSig<-out[indSig,,drop=FALSE]
     P0Sig<-P0[indSig,]
-    SummaryDataSig<-SummaryData[indSig,]
+    SummaryDataSig<-SummaryData[indSig,,drop=FALSE]
     CNFSig<-round(2*(2^SummaryDataSig[,4]),digit=2)
     CNSig<-round(CNFSig)
     
@@ -487,9 +487,9 @@ VCFRegionCreate<-function(Assembly,DataFolder,ExpLabelOut,TargetFolder,SummaryDa
   {
     
     
-    outSig<-out[indSig,]
+    outSig<-out[indSig,,drop=FALSE]
     P0Sig<-P0[indSig,]
-    SummaryDataSig<-SummaryData[indSig,]
+    SummaryDataSig<-SummaryData[indSig,,drop=FALSE]
     CNFSig<-round(2*(2^SummaryDataSig[,4]),digit=2)
     CNSig<-round(CNFSig)
     

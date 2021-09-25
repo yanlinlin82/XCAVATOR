@@ -304,9 +304,9 @@ for (zz in 1:length(ExpTest))
   
   if (length(indSig)!=0)
   {
-    outSig<-out[indSig,]
+    outSig<-out[indSig,,drop=FALSE]
     P0Sig<-P0[indSig,]
-    SummaryDataSig<-SummaryData[indSig,]
+    SummaryDataSig<-SummaryData[indSig,,drop=FALSE]
     CNFSig<-2*(2^SummaryDataSig[,4])
     CNSig<-round(CNFSig)
     
